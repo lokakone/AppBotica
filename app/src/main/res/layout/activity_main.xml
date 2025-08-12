@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A8DCB"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="408dp"
+        android:layout_height="158dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="235dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:text="Bienvenido a la APP de Boticas y Salud"
+        android:textColor="#F1EDED"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588" />
+
+    <Button
+        android:id="@+id/btncontinuar"
+        android:layout_width="242dp"
+        android:layout_height="61dp"
+        android:text="¡Comenzar!"
+        android:textColor="#1A8DCB"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:backgroundTint="#DCFBFBFB"
+        app:icon="@drawable/ic_baseline_input_24"
+        app:iconTint="#1A8DCB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
+
+    <Button
+        android:id="@+id/btncerrar"
+        android:layout_width="242dp"
+        android:layout_height="50dp"
+        android:background="#FBF7F7"
+        android:shadowColor="#F4F2F2"
+        android:text="salir"
+        android:textColor="#E11F1F"
+        android:textColorHighlight="#FDFAFA"
+        android:textColorHint="#F4F4F4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:backgroundTint="#00FFFFFF"
+        app:icon="@drawable/ic_baseline_close_24"
+        app:iconTint="#EF1010"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.847"
+        app:strokeColor="#F4F3F3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
