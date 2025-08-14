@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/ubicacion"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:title="Ubicacion"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/misionvision"
+        android:icon="@drawable/ic_baseline_handshake_24"
+        android:title="Mision y Vision"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/qSomos"
+        android:icon="@drawable/ic_baseline_apartment_24"
+        android:title="Quienes somos"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/productos"
+        android:icon="@drawable/ic_baseline_medication_24"
+        android:title="Productos"
+        app:showAsAction="always" />
+    <item
+        android:icon="@drawable/ic_baseline_reply_24"
+        android:title="Atras"
+        app:showAsAction="always" />
 </menu>
