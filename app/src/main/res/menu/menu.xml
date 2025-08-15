@@ -26,4 +26,13 @@
         android:icon="@drawable/ic_baseline_reply_24"
         android:title="Atras"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/medicamento"
+        android:title="Medicamento" />
+    <item
+        android:id="@+id/laboratorio"
+        android:title="Laboratorio" />
+    <item
+        android:id="@+id/ompra"
+        android:title="Compra" />
 </menu>
