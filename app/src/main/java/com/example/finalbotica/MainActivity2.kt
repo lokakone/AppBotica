@@ -27,6 +27,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -35,6 +36,7 @@ class MainActivity2 : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true) // Activa el botón "atrás" (home)
             setHomeAsUpIndicator(R.drawable.ic_baseline_reply_24) // Cambia icono
         }
+
 
         txtUsuario = findViewById(R.id.txtUsuario)
         txtPassword = findViewById(R.id.txtPassword)

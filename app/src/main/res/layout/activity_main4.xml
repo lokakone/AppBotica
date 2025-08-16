@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A8DCB"
+    tools:context=".MainActivity4">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="235dp"
+        android:layout_height="39dp"
+        android:text="Sobre Nosotros"
+        android:textColor="#7ECB2B"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="347dp"
+        android:layout_height="255dp"
+        android:text="Boticas y Salud es una cadena de farmacias 100% peruana, fundada en 1998, perteneciente al Grupo Farmacéutico Deco, el cual es considerado entre las 250 empresas más importantes del país.  En Boticas y Salud estamos dedicados a cuidarte a ti y a tu familia en nuestros más de 140 locales a nivel nacional.  Boticas y Salud se creó con la firme intención de brindarle a las familias peruanas un lugar donde encontrar productos farmacéuticos y de cuidado personal de la más alta calidad, de procedencia legal y a precios justos. Todo esto a través de una atención atenta y ética por parte de profesionales de la salud debidamente capacitados, brindando así un servicio personalizado acompañado de beneficios adicionales."
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.174" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="347dp"
+        android:layout_height="293dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771"
+        app:srcCompat="@drawable/tienda" />
+</androidx.constraintlayout.widget.ConstraintLayout>

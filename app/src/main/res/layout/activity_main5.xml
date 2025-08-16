@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A8DCB"
+    tools:context=".MainActivity5">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="342dp"
+        android:layout_height="87dp"
+        android:text="Ser la cadena de Boticas lidér en el cuidado de la salud, reconocidos por brindar a nuestros pacientes - clientes el mejor cuidado y una experiencia grata por el servicio más atento, profesional, ético y de calidad del mercado."
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="342dp"
+        android:layout_height="87dp"
+        android:text="Dedicarnos al cuidado de la salud a través de una atención farmaceutica atenta, profesionales, ética y de alta calidad comercializando productos farmacéuticos de procedencia legal, a precio justo y reconocida de calidad en el mercado peruano.Asi mismo, dedicarnos al cuidañdo y crecimiento sostenido de nuestra empresa y sus colaboradores."
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.383" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="235dp"
+        android:layout_height="39dp"
+        android:text="Visión"
+        android:textColor="#7ECB2B"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="235dp"
+        android:layout_height="39dp"
+        android:text="Misión"
+        android:textColor="#7ECB2B"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="300dp"
+        android:layout_height="263dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.799"
+        app:srcCompat="@drawable/vision" />
+</androidx.constraintlayout.widget.ConstraintLayout>
