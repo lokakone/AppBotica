@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.content.Intent
-import android.view.View
 import android.widget.*
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
@@ -17,47 +16,50 @@ import org.json.JSONObject
 
 class MedicamentosActivity : AppCompatActivity() {
 
-    //edittext and spinner
-    private var editTextArtistName: EditText? = null
-    private var spinnerGenre: Spinner? = null
-    lateinit var btnagregar: Button
-    lateinit var btnver: Button
-    lateinit var btnborra: Button
+    private lateinit var txtIdMedicamento: EditText
+    private lateinit var txtDescripcion: EditText
+    private lateinit var txtPresentacion: EditText
+    private lateinit var txtInventario: EditText
+    private lateinit var txtStock: EditText
+    private lateinit var txtCosto: EditText
+    private lateinit var txtVenta: EditText
+    private lateinit var txtObservacion: EditText
 
+    private lateinit var btnAgregar: Button
+    private lateinit var btnVer: Button
+    private lateinit var btnBorrar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main6)
 
-        //getting it from xml
-        editTextArtistName = findViewById(R.id.editTextArtistName) as EditText
-        spinnerGenre = findViewById(R.id.spinnerGenre) as Spinner
-        btnagregar = findViewById(R.id.buttonAddArtist)
-        btnver = findViewById(R.id.buttonViewArtist)
-        btnborra = findViewById(R.id.buttonBorraArtist)
+        // Vincular con el XML
+        txtIdMedicamento = findViewById(R.id.txtidmedicamento)
+        txtDescripcion = findViewById(R.id.txtdescripcion)
+        txtPresentacion = findViewById(R.id.txtpresentacion)
+        txtInventario = findViewById(R.id.txtinventario)
+        txtStock = findViewById(R.id.txtstock)
+        txtCosto = findViewById(R.id.txtcosto)
+        txtVenta = findViewById(R.id.txtventa)
+        txtObservacion = findViewById(R.id.txtobservacion)
 
-        //adding a click listener to button
-        btnagregar.setOnClickListener { addArtist() }
+        btnAgregar = findViewById(R.id.buttonAddMedicamento)
+        btnVer = findViewById(R.id.buttonViewMedicamento)
+        btnBorrar = findViewById(R.id.buttonBorraMedicamento)
 
-        btnborra.setOnClickListener { BorraArtista() }
+        btnAgregar.setOnClickListener { addMedicamento() }
+        btnBorrar.setOnClickListener { borrarMedicamento() }
 
-        //in the second button click
-        //opening the activity to display all the artist
-        //it will give error as we dont have this activity so remove this part for now to run the app
-        btnver.setOnClickListener {
+        btnVer.setOnClickListener {
             val intent = Intent(applicationContext, ViewMedicamentosActivity::class.java)
             startActivity(intent)
         }
     }
 
-    //adding a new record to database
-    private fun addArtist() {
-        //getting the record values
-        val name = editTextArtistName?.text.toString()
-        val genre = spinnerGenre?.selectedItem.toString()
-
-        //creating volley string request
-        val stringRequest = object : StringRequest(Request.Method.POST, EndPoints.URL_ADD_ARTIST,
+    // Insertar medicamento
+    private fun addMedicamento() {
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, EndPoints.URL_ADD_MEDICAMENTO,
             Response.Listener<String> { response ->
                 try {
                     val obj = JSONObject(response)
@@ -66,30 +68,33 @@ class MedicamentosActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
             },
-            object : Response.ErrorListener {
-                override fun onErrorResponse(volleyError: VolleyError) {
-                    Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show()
-                }
+            Response.ErrorListener { volleyError ->
+                Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show()
             }) {
+
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {
                 val params = HashMap<String, String>()
-                params.put("nombre", name)
-                params.put("genero", genre)
+                params["idmedicamento"] = txtIdMedicamento.text.toString()
+                params["descripcion"] = txtDescripcion.text.toString()
+                params["presentacion"] = txtPresentacion.text.toString()
+                params["inventario"] = txtInventario.text.toString()
+                params["stock_disponible"] = txtStock.text.toString()
+                params["precio_costo"] = txtCosto.text.toString()
+                params["precio_venta"] = txtVenta.text.toString()
+                params["observacion"] = txtObservacion.text.toString()
                 return params
             }
         }
-
-        //adding request to queue
         VolleySingleton.instance?.addToRequestQueue(stringRequest)
     }
 
-    private fun BorraArtista(){
-        val nombre = editTextArtistName?.text.toString()
-
-        if(!nombre.isEmpty()){
-
-            val stringRequest = object : StringRequest(Request.Method.POST, EndPoints.URL_BORRA_ARTIST,
+    // Borrar medicamento
+    private fun borrarMedicamento() {
+        val id = txtIdMedicamento.text.toString()
+        if (id.isNotEmpty()) {
+            val stringRequest = object : StringRequest(
+                Request.Method.POST, EndPoints.URL_DELETE_MEDICAMENTO,
                 Response.Listener<String> { response ->
                     try {
                         val obj = JSONObject(response)
@@ -98,24 +103,19 @@ class MedicamentosActivity : AppCompatActivity() {
                         e.printStackTrace()
                     }
                 },
-                object : Response.ErrorListener {
-                    override fun onErrorResponse(volleyError: VolleyError) {
-                        Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show()
-                    }
+                Response.ErrorListener { volleyError ->
+                    Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show()
                 }) {
                 @Throws(AuthFailureError::class)
                 override fun getParams(): Map<String, String> {
                     val params = HashMap<String, String>()
-                    params.put("nombre", nombre)
+                    params["idmedicamento"] = id
                     return params
                 }
             }
-
-            //adding request to queue
             VolleySingleton.instance?.addToRequestQueue(stringRequest)
-        }else{
-            Toast.makeText(this, "Ingrese el artista a borrar!!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Ingrese el ID del medicamento a borrar!!", Toast.LENGTH_SHORT).show()
         }
-
     }
 }
