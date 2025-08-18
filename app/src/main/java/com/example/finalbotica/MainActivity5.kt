@@ -16,8 +16,7 @@ class MainActivity5 : AppCompatActivity() {
     override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> { // Este es el botón "up" (flecha o icono que pusiste)
-                val intent = Intent(this, MainActivity3::class.java)
-                startActivity(intent)
+
                 finish() // opcional, para que no vuelva aquí al presionar atrás
                 true
             }

@@ -1,10 +1,11 @@
 package com.example.finalbotica
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import android.content.Intent
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
@@ -12,17 +13,14 @@ import com.android.volley.toolbox.StringRequest
 import org.json.JSONException
 import org.json.JSONObject
 
+class LaboratorioActivity : AppCompatActivity() {
 
-class MedicamentosActivity : AppCompatActivity() {
-
-    private lateinit var txtIdMedicamento: EditText
-    private lateinit var txtDescripcion: EditText
-    private lateinit var txtPresentacion: EditText
-    private lateinit var txtInventario: EditText
-    private lateinit var txtStock: EditText
-    private lateinit var txtCosto: EditText
-    private lateinit var txtVenta: EditText
-    private lateinit var txtObservacion: EditText
+    private lateinit var txtRuc: EditText
+    private lateinit var txtRazonsocial: EditText
+    private lateinit var txtDireccion: EditText
+    private lateinit var txtMovil: EditText
+    private lateinit var txtContacto: EditText
+    private lateinit var txtEmail: EditText
 
     private lateinit var btnAgregar: Button
     private lateinit var btnVer: Button
@@ -30,33 +28,30 @@ class MedicamentosActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_medicamento)
+        setContentView(R.layout.activity_laboratorio)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true) // Activa el botón "atrás" (home)
             setHomeAsUpIndicator(R.drawable.ic_baseline_reply_24) // Cambia icono
         }
+        txtRuc = findViewById(R.id.txtruc)
+        txtRazonsocial = findViewById(R.id.txtrazonsocial)
+        txtDireccion = findViewById(R.id.txtdireccion)
+        txtMovil = findViewById(R.id.txtmovil)
+        txtContacto = findViewById(R.id.txtcontacto)
+        txtEmail = findViewById(R.id.txtemail)
 
-        // Vincular con el XML
-        txtIdMedicamento = findViewById(R.id.txtidmedicamento)
-        txtDescripcion = findViewById(R.id.txtdescripcion)
-        txtPresentacion = findViewById(R.id.txtpresentacion)
-        txtInventario = findViewById(R.id.txtinventario)
-        txtStock = findViewById(R.id.txtstock)
-        txtCosto = findViewById(R.id.txtcosto)
-        txtVenta = findViewById(R.id.txtventa)
-        txtObservacion = findViewById(R.id.txtobservacion)
+        btnAgregar = findViewById(R.id.buttonAddLaboratorio)
+        btnVer = findViewById(R.id.buttonViewLaboratorio)
+        btnBorrar = findViewById(R.id.buttonBorraLaboratorio)
 
-        btnAgregar = findViewById(R.id.buttonAddMedicamento)
-        btnVer = findViewById(R.id.buttonViewMedicamento)
-        btnBorrar = findViewById(R.id.buttonBorraMedicamento)
-
-        btnAgregar.setOnClickListener { addMedicamento() }
-        btnBorrar.setOnClickListener { borrarMedicamento() }
+        btnAgregar.setOnClickListener { addLaboratorio() }
+        btnBorrar.setOnClickListener { borrarLaboratorio() }
 
         btnVer.setOnClickListener {
-            val intent = Intent(applicationContext, ViewMedicamentosActivity::class.java)
+            val intent = Intent(applicationContext, ViewLaboratorioActivity::class.java)
             startActivity(intent)
         }
+
     }
     override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
         return when (item.itemId) {
@@ -68,11 +63,10 @@ class MedicamentosActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    // Insertar medicamento
-    private fun addMedicamento() {
+    // Insertar laboratorio
+    private fun addLaboratorio() {
         val stringRequest = object : StringRequest(
-            Request.Method.POST, EndPoints.URL_ADD_MEDICAMENTO,
+            Request.Method.POST, EndPoints.URL_ADD_LABORATORIO,
             Response.Listener<String> { response ->
                 try {
                     val obj = JSONObject(response)
@@ -88,26 +82,23 @@ class MedicamentosActivity : AppCompatActivity() {
             @Throws(AuthFailureError::class)
             override fun getParams(): Map<String, String> {
                 val params = HashMap<String, String>()
-                params["idmedicamento"] = txtIdMedicamento.text.toString()
-                params["descripcion"] = txtDescripcion.text.toString()
-                params["presentacion"] = txtPresentacion.text.toString()
-                params["inventario"] = txtInventario.text.toString()
-                params["stock_disponible"] = txtStock.text.toString()
-                params["precio_costo"] = txtCosto.text.toString()
-                params["precio_venta"] = txtVenta.text.toString()
-                params["observacion"] = txtObservacion.text.toString()
+                params["ruc_laboratorio"] = txtRuc.text.toString()
+                params["razon_social"] = txtRazonsocial.text.toString()
+                params["direccion"] = txtDireccion.text.toString()
+                params["movil"] = txtMovil.text.toString()
+                params["contacto"] = txtContacto.text.toString()
+                params["email"] = txtEmail.text.toString()
                 return params
             }
         }
         VolleySingleton.instance?.addToRequestQueue(stringRequest)
     }
-
-    // Borrar medicamento
-    private fun borrarMedicamento() {
-        val id = txtIdMedicamento.text.toString()
+    // Borrar Laboratorio
+    private fun borrarLaboratorio() {
+        val id = txtRuc.text.toString()
         if (id.isNotEmpty()) {
             val stringRequest = object : StringRequest(
-                Request.Method.POST, EndPoints.URL_DELETE_MEDICAMENTO,
+                Request.Method.POST, EndPoints.URL_DELETE_LABORATORIO,
                 Response.Listener<String> { response ->
                     try {
                         val obj = JSONObject(response)
@@ -122,13 +113,13 @@ class MedicamentosActivity : AppCompatActivity() {
                 @Throws(AuthFailureError::class)
                 override fun getParams(): Map<String, String> {
                     val params = HashMap<String, String>()
-                    params["idmedicamento"] = id
+                    params["ruc_laboratorio"] = id
                     return params
                 }
             }
             VolleySingleton.instance?.addToRequestQueue(stringRequest)
         } else {
-            Toast.makeText(this, "Ingrese el ID del medicamento a borrar!!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ingrese el RUC del laboratorio a borrar!!", Toast.LENGTH_SHORT).show()
         }
     }
 }

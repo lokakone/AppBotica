@@ -12,21 +12,21 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import org.json.JSONObject
 
-class ViewMedicamentosActivity : AppCompatActivity() {
+class ViewLaboratorioActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
-    private lateinit var medicamentList: MutableList<Medicamentos>
+    private lateinit var laboratorioList: MutableList<Laboratorio>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.viewmedicamentos)
+        setContentView(R.layout.activity_view_laboratorio)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true) // Activa el botón "atrás" (home)
             setHomeAsUpIndicator(R.drawable.ic_baseline_reply_24) // Cambia icono
         }
 
-        listView = findViewById(R.id.listViewMedicamentos)
-        medicamentList = mutableListOf()
+        listView = findViewById(R.id.listViewLaboratorio)
+        laboratorioList = mutableListOf()
         loadMedicamentos()
     }
     override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
@@ -43,34 +43,32 @@ class ViewMedicamentosActivity : AppCompatActivity() {
     private fun loadMedicamentos() {
         val stringRequest = StringRequest(
             Request.Method.GET,
-            EndPoints.URL_GET_MEDICAMENTOS,
+            EndPoints.URL_GET_LABORATORIO,
             Response.Listener { response ->
                 try {
                     val obj = JSONObject(response)
                     if (!obj.getBoolean("error")) {
 
-                        val array = obj.getJSONArray("medicamentos") // 👈 nombre correcto del JSON
+                        val array = obj.getJSONArray("laboratorios") // 👈 nombre correcto del JSON
 
-                        medicamentList.clear()
+                        laboratorioList.clear()
 
                         for (i in 0 until array.length()) {
                             val objectMed = array.getJSONObject(i)
 
-                            val medicamento = Medicamentos(
-                                objectMed.getString("idmedicamento"),
-                                objectMed.getString("descripcion"),
-                                objectMed.getString("presentacion"),
-                                objectMed.getInt("inventario"),
-                                objectMed.getInt("stock_disponible"),
-                                objectMed.getDouble("precio_costo"),
-                                objectMed.getDouble("precio_venta"),
-                                objectMed.getString("observacion")
+                            val laboratorio = Laboratorio(
+                                objectMed.getString("ruc_laboratorio"),
+                                objectMed.getString("razon_social"),
+                                objectMed.getString("direccion"),
+                                objectMed.getString("movil"),
+                                objectMed.getString("contacto"),
+                                objectMed.getString("email")
                             )
 
-                            medicamentList.add(medicamento)
+                            laboratorioList.add(laboratorio)
                         }
 
-                        val adapter = MedicamentosList(this@ViewMedicamentosActivity, medicamentList)
+                        val adapter = LaboratorioList(this@ViewLaboratorioActivity, laboratorioList)
                         listView.adapter = adapter
 
                     } else {
